@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 443;
 const https = require('https');
 const fs = require('fs');
 
@@ -8,11 +8,11 @@ app.use('/assets', express.static('public/assets'));
 
 app.use(express.json());
 
-// const options = {
-// 	key: fs.readFileSync('/etc/letsencrypt/live/aviabeway.space/privkey.pem'),
-// 	cert: fs.readFileSync('/etc/letsencrypt/live/aviabeway.space/cert.pem'),
-// 	ca: fs.readFileSync('/etc/letsencrypt/live/aviabeway.space/chain.pem'),
-// };
+const options = {
+	key: fs.readFileSync('/etc/letsencrypt/live/aviabeway.space/privkey.pem'),
+	cert: fs.readFileSync('/etc/letsencrypt/live/aviabeway.space/cert.pem'),
+	ca: fs.readFileSync('/etc/letsencrypt/live/aviabeway.space/chain.pem'),
+};
 
 
 async function isReviewExternalRequest() {
@@ -94,8 +94,8 @@ app.get('/', async (req, res) => {
 	}
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-// https.createServer(options, app).listen(PORT, () => {
-// 	console.log(`Server running on https://pinmix.space`);
-// });
+https.createServer(options, app).listen(PORT, () => {
+	console.log(`Server running on https://pinmix.space`);
+});
